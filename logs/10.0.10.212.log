@@ -1,0 +1,14 @@
+[2016-04-30 10:30:55,152][10.0.10.212] logging in.
+[2016-04-30 10:30:55,152][10.0.10.212] Fetching running configuration all
+[2016-04-30 10:31:05,055][10.0.10.212] Cannot find a previous config to diff against.
+[2016-04-30 12:49:14,548][10.0.10.212] logging in.
+[2016-04-30 12:49:14,549][10.0.10.212] Fetching running configuration all
+[2016-04-30 12:49:24,967][10.0.10.212] diff ./logs/10.0.10.212-running-20160430-103105-latest.log vs. running
+[2016-04-30 13:01:24,524][10.0.10.212] logging in.
+[2016-04-30 13:01:24,524][10.0.10.212] Fetching running configuration all
+[2016-04-30 13:12:02,511][10.0.10.212] logging in.
+[2016-04-30 13:12:02,512][10.0.10.212] Fetching running configuration all
+[2016-04-30 13:12:12,333][10.0.10.212] diff ./logs/10.0.10.212-running-20160430-103105-latest.log vs. base
+[2016-04-30 13:14:47,216][10.0.10.212] logging in.
+[2016-04-30 13:14:47,216][10.0.10.212] Fetching running configuration all
+[2016-04-30 13:14:57,848][10.0.10.212] diff ./logs/10.0.10.212-running-20160430-103105-latest.log vs. base
