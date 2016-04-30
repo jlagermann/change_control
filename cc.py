@@ -241,6 +241,7 @@ class SteelHeadCC(Application):
         :param device_ip: the device ip address
         :return: None always ...
         '''
+        # TODO change logic to handle type running vs base, too much code to wrap the options
         if previous_filename is None:
             logger.critical('Cannot find a previous config to diff against.')
             return None
@@ -258,7 +259,7 @@ class SteelHeadCC(Application):
                         diff = difflib.HtmlDiff().make_file(previous_text,running_text,previous_filename,'running',
                                                             True)
                     elif type is 'base':
-                        diff = difflib.HtmlDiff().make_file(previous_text, running_text, previous_filename, 'running',
+                        diff = difflib.HtmlDiff().make_file(previous_text, running_text, previous_filename, 'base',
                                                             True)
                     try:
                         if type is 'running':
@@ -266,18 +267,25 @@ class SteelHeadCC(Application):
                                 './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.html', "w+")
                         elif type is 'base':
                             diff_file = open(
-                                './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.html', "w+")
+                                './logs/' + device_ip + '-' + previous_date_match.group() + '-base.diff.html', "w+")
                         diff_file.write(diff)
                         diff_file.close()
                     except AttributeError as e:
                         logger.info('cannot find date in file string')
                         return None
                 else:
-                    diff = difflib.context_diff(previous_text, running_text, previous_filename,'running',
-                                                previous_date_match.group(), 'running')
-
-                    diff_file = open(
-                        './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.txt', "w+")
+                    if type is 'running':
+                        diff = difflib.context_diff(previous_text, running_text, previous_filename,'running',
+                                                    previous_date_match.group(), 'running')
+                    elif type is 'base':
+                        diff = difflib.context_diff(previous_text, running_text, previous_filename, 'running',
+                                                    previous_date_match.group(), 'base')
+                    if type is 'running':
+                        diff_file = open(
+                            './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.txt', "w+")
+                    elif type is 'base':
+                        diff_file = open(
+                            './logs/' + device_ip + '-' + previous_date_match.group() + '-base.diff.txt', "w+")
                     try:
                         for line in diff:
                             diff_file.write(line)
