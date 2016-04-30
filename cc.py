@@ -36,15 +36,7 @@ def sh_retry_exec_command(logger=None, sh=None, cmd=None):
 
 def unwrap_self_process_steelhead(arg, **kwarg):
 
-    return SteelHeadCrawler.process_steelhead(*arg, **kwarg)
-
-
-def string_to_key(string=None):
-    string = string.strip()
-    string = string.lower()
-    string = string.replace(' ', '_')
-
-    return string
+    return SteelHeadCC.process_steelhead(*arg, **kwarg)
 
 
 def steelhead_show_run(sh=None, logger=None):
@@ -62,13 +54,13 @@ def process_init():
     signal.signal(signal.SIGINT, signal.SIG_IGN)
 
 
-class SteelHeadCrawler(Application):
+class SteelHeadCC(Application):
 
     def add_positional_args(self):
         self.add_positional_arg('scc', 'SteelCentral Controller for SteelHead IP Address')
 
     def add_options(self, parser):
-        super(SteelHeadCrawler, self).add_options(parser)
+        super(SteelHeadCC, self).add_options(parser)
         parser.add_option('-u', '--username', help="SteelHead username, default=admin", default="admin")
         parser.add_option('-p', '--password', help="Password for all SteelHead's")
         parser.add_option('-a', '--archive', action="store_true",dest="archive", default=True, help="archive configuration file")
@@ -130,7 +122,7 @@ class SteelHeadCrawler(Application):
             except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
                 pass
 
-            super(SteelHeadCrawler, self).validate_args()
+            super(SteelHeadCC, self).validate_args()
 
         if not self.options.password:
             self.options.password = getpass.getpass("Password for all SteelHead's:")
@@ -329,5 +321,5 @@ class SteelHeadCrawler(Application):
         #    pool.join()
 
 if __name__ == '__main__':
-    SteelHeadCrawler().run()
+    SteelHeadCC().run()
 
