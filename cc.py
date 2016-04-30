@@ -18,7 +18,6 @@ import sys
 import ConfigParser
 
 
-
 def sh_retry_exec_command(logger=None, sh=None, cmd=None):
     output = None
     for i in range(0,10):
