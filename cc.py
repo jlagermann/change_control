@@ -14,7 +14,6 @@ import time
 import os
 import glob
 import difflib
-import sys
 import ConfigParser
 
 
