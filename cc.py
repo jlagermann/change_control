@@ -95,12 +95,12 @@ class SteelHeadCC(Application):
                 pass
 
             try:
-                self.options.archive = config.get('Main', 'archive')
+                self.options.archive = config.getboolean('Main', 'archive')
             except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
                 pass
 
             try:
-                self.options.diff = config.get('Main', 'diff')
+                self.options.diff = config.getboolean('Main', 'diff')
             except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
                 pass
 
@@ -110,12 +110,12 @@ class SteelHeadCC(Application):
                 pass
 
             try:
-                self.options.html = config.get('Main', 'html')
+                self.options.html = config.getboolean('Main', 'html')
             except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
                 pass
 
             try:
-                self.options.threads = config.get('Main', 'threads')
+                self.options.threads = config.getint('Main', 'threads')
             except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
                 pass
 
@@ -241,7 +241,6 @@ class SteelHeadCC(Application):
         :param device_ip: the device ip address
         :return: None always ...
         '''
-        # TODO change logic to handle type running vs base, too much code to wrap the options
         if previous_filename is None:
             logger.critical('Cannot find a previous config to diff against.')
             return None
