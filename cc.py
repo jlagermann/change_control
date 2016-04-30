@@ -15,6 +15,8 @@ import os
 import glob
 import difflib
 import sys
+import ConfigParser
+
 
 
 def sh_retry_exec_command(logger=None, sh=None, cmd=None):
@@ -62,10 +64,6 @@ def process_init():
 
 
 class SteelHeadCrawler(Application):
-    # Home
-    access_code = 'eyJhdWQiOiAiaHR0cHM6Ly9SaXZlcmJlZENNQy5sYWdlcm1hbm4uY29tL2FwaS9jb21tb24vMS4wL3Rva2VuIiwgImlzcyI6I' \
-                  'CJodHRwczovL1JpdmVyYmVkQ01DLmxhZ2VybWFubi5jb20iLCAicHJuIjogImFkbWluIiwgImp0aSI6ICI1NmVjNmQyMy0zYjQxLTRk' \
-                  'MDctYjY3Zi1lZmE4ODJhODQ1MjciLCAiZXhwIjogIjAiLCAiaWF0IjogIjEzODQyNjcwNTQifQ=='
 
     def add_positional_args(self):
         self.add_positional_arg('scc', 'SteelCentral Controller for SteelHead IP Address')
@@ -76,17 +74,72 @@ class SteelHeadCrawler(Application):
         parser.add_option('-p', '--password', help="Password for all SteelHead's")
         parser.add_option('-a', '--archive', action="store_true",dest="archive", default=True, help="archive configuration file")
         parser.add_option('-d', '--diff', action="store_true", dest="diff", default=False, help="diff against previous version")
+        parser.add_option('-b', '--base_diff', action="store_true", dest="base_diff", default=False,
+                          help="diff all steelheads against a common base configuration file")
         parser.add_option('', '--html', action="store_true", dest="html", default=False, help="output html file")
-        parser.add_option('-c', '--concurrency', help="how many concurrent devices to process at a given time",
+        parser.add_option('-t', '--threads', help="how many concurrent devices to process at a given time",
                           type=int, default=10)
+        parser.add_option('-c', '--config', help="configuration file")
 
     def validate_args(self):
-        super(SteelHeadCrawler, self).validate_args()
+        if self.options.config:
+            if not os.path.exists(self.options.config):
+                print('Configuration file not found')
+                exit(1)
+
+            config = ConfigParser.ConfigParser()
+            config.readfp(open(self.options.config))
+            config.read(['Main'])
+
+            try:
+                self.options.username = config.get('Main', 'username')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.password = config.get('Main', 'password')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.archive = config.get('Main', 'archive')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.diff = config.get('Main', 'diff')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.base_diff = config.get('Main', 'base_diff')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.html = config.get('Main', 'html')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.threads = config.get('Main', 'threads')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            try:
+                self.options.access_code = config.get('Main', 'access_code')
+            except (ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                pass
+
+            super(SteelHeadCrawler, self).validate_args()
+
         if not self.options.password:
             self.options.password = getpass.getpass("Password for all SteelHead's:")
-        if self.options.html and not self.options.diff:
-            print('You cannot enable html without the diff option')
-            sys.exit(1)
+
+        if self.options.html and not (self.options.diff or self.options.base_diff):
+            print('Cannot specifity html without dif or base_diff options')
+
+
 
     def appliance_report_get_primary_interface(self, device=None):
         for interface in device['interfaces']:
@@ -199,7 +252,7 @@ class SteelHeadCrawler(Application):
                         diff_file = open('./logs/' + device_ip + '-' + previous_date_match.group() + '-' + latest_date_match.group() + '.diff.html', "w+")
                         diff_file.write(diff)
                         diff_file.close()
-                   except AttributeError as e:
+                    except AttributeError as e:
                         logger.info('cannot find date in file string')
                         return
                 else:
@@ -253,7 +306,7 @@ class SteelHeadCrawler(Application):
 
     def main(self):
         """ Get a report of all devices in the SCC inventory """
-        scc = SCC(host=self.options.scc, auth=OAuth(self.access_code))
+        scc = SCC(host=self.options.scc, auth=OAuth(self.options.access_code))
         report = AppliancesReport(scc)
         report.run()
         devices = []
@@ -261,20 +314,20 @@ class SteelHeadCrawler(Application):
             if device['product_code'] == 'SH' or device['product_code'] == 'EX':
                 ip = self.appliance_report_get_primary_interface(device)
                 try:
-                    devices.append((ip, device['hostname']))
-                    #self.process_steelhead((ip, device['hostname']))
+                    #devices.append((ip, device['hostname']))
+                    self.process_steelhead((ip, device['hostname']))
                 except KeyError:
                     pass
-        print('Starting with ' + str(self.options.concurrency) + ' at a time.')
-        try:
-            pool = mp.Pool(processes=self.options.concurrency, initializer=process_init)
-            pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
-            pool.close()
-            pool.join()
+        #print('Starting with ' + str(self.options.threads) + ' at a time.')
+        #try:
+        #    pool = mp.Pool(processes=self.options.threads, initializer=process_init)
+        #    pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
+        #    pool.close()
+        #    pool.join()
             #print ('Pool :' + str(pool_outputs))
-        except KeyboardInterrupt:
-            pool.terminate()
-            pool.join()
+        #except KeyboardInterrupt:
+        #    pool.terminate()
+        #    pool.join()
 
 if __name__ == '__main__':
     SteelHeadCrawler().run()
