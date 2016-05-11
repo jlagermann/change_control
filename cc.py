@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from steelscript.common.app import Application
 from steelscript.common.service import OAuth
 from steelscript.scc.core import SCC
