@@ -9,14 +9,14 @@ To ease the use of this script a config file is being use to allow secure access
 the following are the contents of the configuration file:
 
 ######[Main]
-username = admin
-password = password
-archive = True
-diff = True
-html = True
-threads = 5
-access_code = eyJhdWQiOiAiaHR0cHM8Ly9yaXZlcmJlZGNtYy5jaGxsbmdZLmhvbWUvYXBpL2NvbW1vbi8xLjAvdG9rZW4iLCAiaXNzIjogImh0dHBzOi8vcml2ZXJiZWRjbWMuY2hsbG5nci5ob21lIiwgInBybiI6ICJhZG1pbiIsICJqdGkiOiAiOTUwNTNkMzAtYjMyMy00OWQ5LTk2NzEtOTk4YmQ0Y2ZhOTc0IiwgImV4cCI6ICIwIiwgImlhdCI6ICIxNDYxNjE5ODQwIn0=
-base_diff = ./logs/base_text.txt
+username = admin  
+password = password  
+archive = True  
+diff = True  
+html = True  
+threads = 5  
+access_code = eyJhdWQiOiAiaHR0cHM8Ly9yaXZlcmJlZGNtYy5jaGxsbmdZLmhvbWUvYXBpL2NvbW1vbi8xLjAvdG9rZW4iLCAiaXNzIjogImh0dHBzOi8vcml2ZXJiZWRjbWMuY2hsbG5nci5ob21lIiwgInBybiI6ICJhZG1pbiIsICJqdGkiOiAiOTUwNTNkMzAtYjMyMy00OWQ5LTk2NzEtOTk4YmQ0Y2ZhOTc0IiwgImV4cCI6ICIwIiwgImlhdCI6ICIxNDYxNjE5ODQwIn0=  
+base_diff = ./logs/base_text.txt  
 
 
 ######Config file parameters:
