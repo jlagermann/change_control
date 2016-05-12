@@ -85,14 +85,3 @@ Starting with 5 at a time.
 ...
 ```
 
-### Running from the cli , archiving and diff with html enable
-```
-~/steelscript/bin/python2.7 cc.py -c cc.ini riverbedcmc -u admin -a --diff --html
-Password for all SteelHead's:
-/Users/marcelo/steelscript/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:730: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html (This warning will only appear once by default.)
-  InsecureRequestWarning)
-Starting with 10 at a time.
-...
-```
-* Note: The script will prompt for the username password if is not specified in the config file or via a parameter when running the script.
-
