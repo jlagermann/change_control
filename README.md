@@ -1,4 +1,8 @@
 # cc.py
+#####Requirements
+This script requires steelscript to be installed. You can install all dependencies with:
+pip install requirements.txt
+
 Change Control is a SteelScript that will query the SteelCentral controller for SteelHead to fetch all Steelheads.
 With that information it will ssh into all the devices and will query its running configuration.
 The configuration can be saved for archiving purposes or it can be 'diff' with either a base configuration or with

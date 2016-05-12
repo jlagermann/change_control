@@ -1,0 +1,11 @@
+multiprocessing==2.6.2.1
+steelscript==1.0.1
+steelscript.appfwk==1.0
+steelscript.appfwk.business-hours==1.0
+steelscript.cmdline==0.6
+steelscript.netprofiler==1.0.2
+steelscript.netshark==1.0
+steelscript.scc==0.6
+steelscript.steelhead==0.6
+steelscript.stock==1.0
+steelscript.wireshark==1.0.1
