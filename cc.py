@@ -64,7 +64,7 @@ class SteelHeadCC(Application):
         super(SteelHeadCC, self).add_options(parser)
         parser.add_option('-u', '--username', help="SteelHead username, default=admin", default="admin")
         parser.add_option('-p', '--password', help="Password for all SteelHead's")
-        parser.add_option('-a', '--archive', action="store_true",dest="archive", default=True,
+        parser.add_option('-a', '--archive', action="store_true",dest="archive", default=False,
                           help="archive configuration file")
         parser.add_option('-d', '--diff', action="store_true", dest="diff", default=False,
                           help="diff against previous version")
@@ -253,14 +253,14 @@ class SteelHeadCC(Application):
             if os.path.exists(previous_filename):
                 previous_text = [x.strip() for x in open(previous_filename, "U").readlines()]
                 previous_date_match = re.search(r'\d{8}-\d{6}', previous_filename)
-                running_text = running.split('\n')
+                running_text = [x.strip() for x in running.split('\n')]
                 if self.options.html:
                     if type is 'running':
                         diff = difflib.HtmlDiff().make_file(previous_text,running_text,previous_filename,'running',
-                                                            True,1)
+                                                            True, 0)
                     elif type is 'base':
                         diff = difflib.HtmlDiff().make_file(previous_text, running_text, previous_filename, 'base',
-                                                            True,1)
+                                                            True, 0)
                     try:
                         if type is 'running':
                             diff_file = open(
@@ -276,10 +276,10 @@ class SteelHeadCC(Application):
                 else:
                     if type is 'running':
                         diff = difflib.context_diff(previous_text, running_text, previous_filename,'running',
-                                                    previous_date_match.group(), 'running',1)
+                                                    previous_date_match.group(), 'running', 0)
                     elif type is 'base':
                         diff = difflib.context_diff(previous_text, running_text, previous_filename, 'running',
-                                                    previous_date_match.group(), 'base', 1)
+                                                    previous_date_match.group(), 'base',  0)
                     if type is 'running':
                         diff_file = open(
                             './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.txt', "w+")
@@ -350,7 +350,7 @@ class SteelHeadCC(Application):
             if device['product_code'] == 'SH' or device['product_code'] == 'EX':
                 ip = self.appliance_report_get_primary_interface(device)
                 try:
-                    #devices.append((ip, device['hostname']))
+                    devices.append((ip, device['hostname']))
                     self.process_steelhead((ip, device['hostname']))
                 except KeyError:
                     pass
