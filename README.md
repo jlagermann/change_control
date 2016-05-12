@@ -141,42 +141,6 @@ Starting with 10 at a time.
 ! hostname "VCX"
 ```
 
-### Sample HTML diff report
-<style type="text/css">table.diff {font-family:Courier; border:medium;}.diff_header {background-color:#e0e0e0}td.diff_header {text-align:right}.diff_next {background-color:#c0c0c0}.diff_add {background-color:#aaffaa}.diff_chg {background-color:#ffff77}.diff_sub {background-color:#ffaaaa}</style>
-<table class="diff" id="difflib_chg_to0__top"
-           cellspacing="0" cellpadding="0" rules="groups" >
-        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">./logs/10.0.10.240-20160512-121735-latest.log</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">running</th></tr></thead>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__0"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="from0_15">15</td><td nowrap="nowrap">interface&nbsp;inpath0_0&nbsp;dhcp</td><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="to0_15">15</td><td nowrap="nowrap"><span class="diff_add">no&nbsp;</span>interface&nbsp;inpath0_0&nbsp;dhcp</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_16">16</td><td nowrap="nowrap">interface&nbsp;inpath0_0&nbsp;dhcp&nbsp;dynamic-dns</td><td class="diff_next"></td><td class="diff_header" id="to0_16">16</td><td nowrap="nowrap"><span class="diff_add">no&nbsp;</span>interface&nbsp;inpath0_0&nbsp;dhcp&nbsp;dynamic-dns</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_17">17</td><td nowrap="nowrap">interface&nbsp;inpath0_0&nbsp;force-mdi-x&nbsp;enable</td><td class="diff_next"></td><td class="diff_header" id="to0_17">17</td><td nowrap="nowrap"><span class="diff_add">no&nbsp;</span>interface&nbsp;inpath0_0&nbsp;force-mdi-x&nbsp;enable</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_18">18</td><td nowrap="nowrap"><span class="diff_sub">no&nbsp;</span>interface&nbsp;inpath0_0&nbsp;ip&nbsp;address&nbsp;10.0.10.235&nbsp;/24</td><td class="diff_next"></td><td class="diff_header" id="to0_18">18</td><td nowrap="nowrap">interface&nbsp;inpath0_0&nbsp;ip&nbsp;address&nbsp;10.0.10.235&nbsp;/24</td></tr>
-        </tbody>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__1"><a href="#difflib_chg_to0__2">n</a></td><td class="diff_header" id="from0_68">68</td><td nowrap="nowrap">ip&nbsp;default-gateway&nbsp;"10.0.10.54"</td><td class="diff_next"><a href="#difflib_chg_to0__2">n</a></td><td class="diff_header" id="to0_68">68</td><td nowrap="nowrap">ip&nbsp;default-gateway&nbsp;"10.0.10.<span class="diff_add">2</span>54"</td></tr>
-        </tbody>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__2"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="from0_79">79</td><td nowrap="nowrap">hostname&nbsp;"VCX<span class="diff_sub">-chaned</span>"</td><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="to0_79">79</td><td nowrap="nowrap">hostname&nbsp;"VCX"</td></tr>
-        </tbody>
-    </table>
-    <table class="diff" summary="Legends">
-        <tr> <th colspan="2"> Legends </th> </tr>
-        <tr> <td> <table border="" summary="Colors">
-                      <tr><th> Colors </th> </tr>
-                      <tr><td class="diff_add">&nbsp;Added&nbsp;</td></tr>
-                      <tr><td class="diff_chg">Changed</td> </tr>
-                      <tr><td class="diff_sub">Deleted</td> </tr>
-                  </table></td>
-             <td> <table border="" summary="Links">
-                      <tr><th colspan="2"> Links </th> </tr>
-                      <tr><td>(f)irst change</td> </tr>
-                      <tr><td>(n)ext change</td> </tr>
-                      <tr><td>(t)op</td> </tr>
-                  </table></td> </tr>
-    </table>
-
 #### Caveats
 
 ```
