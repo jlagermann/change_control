@@ -251,16 +251,16 @@ class SteelHeadCC(Application):
             elif type is 'base':
                 logger.info('diff ' + previous_filename + ' vs. base')
             if os.path.exists(previous_filename):
-                previous_text = open(previous_filename, "U").readlines()
+                previous_text = [x.strip() for x in open(previous_filename, "U").readlines()]
                 previous_date_match = re.search(r'\d{8}-\d{6}', previous_filename)
                 running_text = running.split('\n')
                 if self.options.html:
                     if type is 'running':
                         diff = difflib.HtmlDiff().make_file(previous_text,running_text,previous_filename,'running',
-                                                            True)
+                                                            True,1)
                     elif type is 'base':
                         diff = difflib.HtmlDiff().make_file(previous_text, running_text, previous_filename, 'base',
-                                                            True)
+                                                            True,1)
                     try:
                         if type is 'running':
                             diff_file = open(
@@ -276,10 +276,10 @@ class SteelHeadCC(Application):
                 else:
                     if type is 'running':
                         diff = difflib.context_diff(previous_text, running_text, previous_filename,'running',
-                                                    previous_date_match.group(), 'running')
+                                                    previous_date_match.group(), 'running',1)
                     elif type is 'base':
                         diff = difflib.context_diff(previous_text, running_text, previous_filename, 'running',
-                                                    previous_date_match.group(), 'base')
+                                                    previous_date_match.group(), 'base', 1)
                     if type is 'running':
                         diff_file = open(
                             './logs/' + device_ip + '-' + previous_date_match.group() + '-running.diff.txt', "w+")
@@ -332,8 +332,8 @@ class SteelHeadCC(Application):
                 else:
                     logger.critical('Base config file not found exiting')
                     exit(1)
-            if self.options.archive:
-                 self.archive_running_config(device_ip, sh_running, date_string, latest_filename)
+        if self.options.archive:
+            self.archive_running_config(device_ip, sh_running, date_string, latest_filename)
 
 
         time.sleep(5)
@@ -350,19 +350,19 @@ class SteelHeadCC(Application):
             if device['product_code'] == 'SH' or device['product_code'] == 'EX':
                 ip = self.appliance_report_get_primary_interface(device)
                 try:
-                    devices.append((ip, device['hostname']))
-                    #self.process_steelhead((ip, device['hostname']))
+                    #devices.append((ip, device['hostname']))
+                    self.process_steelhead((ip, device['hostname']))
                 except KeyError:
                     pass
         print('Starting with ' + str(self.options.threads) + ' at a time.')
-        try:
-            pool = mp.Pool(processes=self.options.threads, initializer=process_init)
-            pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
-            pool.close()
-            pool.join()
-        except KeyboardInterrupt:
-            pool.terminate()
-            pool.join()
+        #try:
+        #    pool = mp.Pool(processes=self.options.threads, initializer=process_init)
+        #    pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
+        #    pool.close()
+        #    pool.join()
+        #except KeyboardInterrupt:
+        #    pool.terminate()
+        #    pool.join()
 
 if __name__ == '__main__':
     SteelHeadCC().run()
