@@ -126,81 +126,25 @@ Starting with 10 at a time.
 * Note 2: In case a device cannot be reach, the script will try again up to ten times to access the device.
 
 ### Sample text diff report
-
+```
+*** ./logs/10.0.10.209-20160512-120627-latest.log	20160512-120627
+--- running	running
+***************
+*** 6,7 ****
+! interface aux dhcp dynamic-dns! interface aux force-mdi-x enable--- 6,7 ----
+! no interface aux dhcp dynamic-dns! no interface aux force-mdi-x enable***************
+*** 73 ****
+! hostname "vcx-d-changed"--- 73 ----
+! hostname "vcx-d"***************
+*** 1691 ****
+--- 1692 ----
++ in-path rule pass-through srcaddr all-ip srcport "all" dstaddr all-ip dstport "Secure" vlan -1 protocol "tcp" cloud-accel "auto" web-proxy "none" description "" rule-enable true rulenum start***************
+*** 1700 ****
+! no in-path enable--- 1701 ----
+! in-path enable
+```
 
 ### Sample HTML diff report
-<style type="text/css">
-        table.diff {font-family:Courier; border:medium;}
-        .diff_header {background-color:#e0e0e0}
-        td.diff_header {text-align:right}
-        .diff_next {background-color:#c0c0c0}
-        .diff_add {background-color:#aaffaa}
-        .diff_chg {background-color:#ffff77}
-        .diff_sub {background-color:#ffaaaa}
-    </style>
-<table class="diff" id="difflib_chg_to0__top"
-           cellspacing="0" cellpadding="0" rules="groups" >
-        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-        <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">./logs/10.0.10.209-20160512-105206-latest.log</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">running</th></tr></thead>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__0"></td><td class="diff_header" id="from0_10">10</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;shutdown</td><td class="diff_next"></td><td class="diff_header" id="to0_10">10</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;shutdown</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_11">11</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;speed&nbsp;"auto"</td><td class="diff_next"></td><td class="diff_header" id="to0_11">11</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;speed&nbsp;"auto"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_12">12</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;txqueuelen&nbsp;"100"</td><td class="diff_next"></td><td class="diff_header" id="to0_12">12</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;aux&nbsp;txqueuelen&nbsp;"100"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_13">13</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;icmp-err-on-iif&nbsp;enable</td><td class="diff_next"></td><td class="diff_header" id="to0_13">13</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;icmp-err-on-iif&nbsp;enable</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_14">14</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;description&nbsp;""</td><td class="diff_next"></td><td class="diff_header" id="to0_14">14</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;description&nbsp;""</td></tr>
-            <tr><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="from0_15">15</td><td nowrap="nowrap"><span class="diff_chg">&nbsp;&nbsp;</span>&nbsp;interface&nbsp;inpath0_0&nbsp;dhcp</td><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="to0_15">15</td><td nowrap="nowrap"><span class="diff_chg">no</span>&nbsp;interface&nbsp;inpath0_0&nbsp;dhcp</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_16">16</td><td nowrap="nowrap"><span class="diff_chg">&nbsp;&nbsp;</span>&nbsp;interface&nbsp;inpath0_0&nbsp;dhcp&nbsp;dynamic-dns</td><td class="diff_next"></td><td class="diff_header" id="to0_16">16</td><td nowrap="nowrap"><span class="diff_chg">no</span>&nbsp;interface&nbsp;inpath0_0&nbsp;dhcp&nbsp;dynamic-dns</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_17">17</td><td nowrap="nowrap"><span class="diff_chg">&nbsp;&nbsp;</span>&nbsp;interface&nbsp;inpath0_0&nbsp;force-mdi-x&nbsp;enable</td><td class="diff_next"></td><td class="diff_header" id="to0_17">17</td><td nowrap="nowrap"><span class="diff_chg">no</span>&nbsp;interface&nbsp;inpath0_0&nbsp;force-mdi-x&nbsp;enable</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_18">18</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;ip&nbsp;address&nbsp;10.0.23.245&nbsp;/29</td><td class="diff_next"></td><td class="diff_header" id="to0_18">18</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;ip&nbsp;address&nbsp;10.0.23.245&nbsp;/29</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_19">19</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;mtu&nbsp;"1500"</td><td class="diff_next"></td><td class="diff_header" id="to0_19">19</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;mtu&nbsp;"1500"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_20">20</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;napi-weight&nbsp;"128"</td><td class="diff_next"></td><td class="diff_header" id="to0_20">20</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;napi-weight&nbsp;"128"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_21">21</td><td nowrap="nowrap">no&nbsp;interface&nbsp;inpath0_0&nbsp;shutdown</td><td class="diff_next"></td><td class="diff_header" id="to0_21">21</td><td nowrap="nowrap">no&nbsp;interface&nbsp;inpath0_0&nbsp;shutdown</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_22">22</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;speed&nbsp;"auto"</td><td class="diff_next"></td><td class="diff_header" id="to0_22">22</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;inpath0_0&nbsp;speed&nbsp;"auto"</td></tr>
-        </tbody>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__1"></td><td class="diff_header" id="from0_45">45</td><td nowrap="nowrap">no&nbsp;interface&nbsp;mtu-override&nbsp;enable</td><td class="diff_next"></td><td class="diff_header" id="to0_45">45</td><td nowrap="nowrap">no&nbsp;interface&nbsp;mtu-override&nbsp;enable</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_46">46</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;description&nbsp;""</td><td class="diff_next"></td><td class="diff_header" id="to0_46">46</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;description&nbsp;""</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_47">47</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;dhcp</td><td class="diff_next"></td><td class="diff_header" id="to0_47">47</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;dhcp</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_48">48</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;dhcp&nbsp;dynamic-dns</td><td class="diff_next"></td><td class="diff_header" id="to0_48">48</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;dhcp&nbsp;dynamic-dns</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_49">49</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;force-mdi-x&nbsp;enable</td><td class="diff_next"></td><td class="diff_header" id="to0_49">49</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;force-mdi-x&nbsp;enable</td></tr>
-            <tr><td class="diff_next"><a href="#difflib_chg_to0__2">n</a></td><td class="diff_header" id="from0_50">50</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;ip&nbsp;address&nbsp;10.0.10.2<span class="diff_sub">1</span>0&nbsp;/24</td><td class="diff_next"><a href="#difflib_chg_to0__2">n</a></td><td class="diff_header" id="to0_50">50</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;ip&nbsp;address&nbsp;10.0.10.20<span class="diff_add">9</span>&nbsp;/24</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_51">51</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;mtu&nbsp;"1500"</td><td class="diff_next"></td><td class="diff_header" id="to0_51">51</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;mtu&nbsp;"1500"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_52">52</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;napi-weight&nbsp;"128"</td><td class="diff_next"></td><td class="diff_header" id="to0_52">52</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;napi-weight&nbsp;"128"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_53">53</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;shutdown</td><td class="diff_next"></td><td class="diff_header" id="to0_53">53</td><td nowrap="nowrap">no&nbsp;interface&nbsp;primary&nbsp;shutdown</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_54">54</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;speed&nbsp;"auto"</td><td class="diff_next"></td><td class="diff_header" id="to0_54">54</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;speed&nbsp;"auto"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_55">55</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;txqueuelen&nbsp;"100"</td><td class="diff_next"></td><td class="diff_header" id="to0_55">55</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;interface&nbsp;primary&nbsp;txqueuelen&nbsp;"100"</td></tr>
-        </tbody>
-        <tbody>
-            <tr><td class="diff_next" id="difflib_chg_to0__2"></td><td class="diff_header" id="from0_68">68</td><td nowrap="nowrap">##</td><td class="diff_next"></td><td class="diff_header" id="to0_68">68</td><td nowrap="nowrap">##</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_69">69</td><td nowrap="nowrap">##&nbsp;Other&nbsp;IP&nbsp;configuration</td><td class="diff_next"></td><td class="diff_header" id="to0_69">69</td><td nowrap="nowrap">##&nbsp;Other&nbsp;IP&nbsp;configuration</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_70">70</td><td nowrap="nowrap">##</td><td class="diff_next"></td><td class="diff_header" id="to0_70">70</td><td nowrap="nowrap">##</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_71">71</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;host&nbsp;"localhost"&nbsp;127.0.0.1</td><td class="diff_next"></td><td class="diff_header" id="to0_71">71</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;host&nbsp;"localhost"&nbsp;127.0.0.1</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_72">72</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;host&nbsp;"localhost"&nbsp;::1</td><td class="diff_next"></td><td class="diff_header" id="to0_72">72</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;host&nbsp;"localhost"&nbsp;::1</td></tr>
-            <tr><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="from0_73">73</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;hostname&nbsp;"vcx-d<span class="diff_sub">&nbsp;changed</span>"</td><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="to0_73">73</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;hostname&nbsp;"vcx-d"</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_74">74</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;fqdn&nbsp;override&nbsp;""</td><td class="diff_next"></td><td class="diff_header" id="to0_74">74</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;fqdn&nbsp;override&nbsp;""</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_75">75</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;name-server&nbsp;10.0.10.1</td><td class="diff_next"></td><td class="diff_header" id="to0_75">75</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;ip&nbsp;name-server&nbsp;10.0.10.1</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_76">76</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;</td><td class="diff_next"></td><td class="diff_header" id="to0_76">76</td><td nowrap="nowrap">&nbsp;&nbsp;&nbsp;</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_77">77</td><td nowrap="nowrap">##</td><td class="diff_next"></td><td class="diff_header" id="to0_77">77</td><td nowrap="nowrap">##</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_78">78</td><td nowrap="nowrap">##&nbsp;Logging&nbsp;configuration</td><td class="diff_next"></td><td class="diff_header" id="to0_78">78</td><td nowrap="nowrap">##&nbsp;Logging&nbsp;configuration</td></tr>
-        </tbody>
-    </table>
-    <table class="diff" summary="Legends">
-        <tr> <th colspan="2"> Legends </th> </tr>
-        <tr> <td> <table border="" summary="Colors">
-                      <tr><th> Colors </th> </tr>
-                      <tr><td class="diff_add">&nbsp;Added&nbsp;</td></tr>
-                      <tr><td class="diff_chg">Changed</td> </tr>
-                      <tr><td class="diff_sub">Deleted</td> </tr>
-                  </table></td>
-             <td> <table border="" summary="Links">
-                      <tr><th colspan="2"> Links </th> </tr>
-                      <tr><td>(f)irst change</td> </tr>
-                      <tr><td>(n)ext change</td> </tr>
-                      <tr><td>(t)op</td> </tr>
-                  </table></td> </tr>
-    </table>
-
 
 
 #### Caveats

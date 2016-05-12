@@ -351,18 +351,18 @@ class SteelHeadCC(Application):
                 ip = self.appliance_report_get_primary_interface(device)
                 try:
                     devices.append((ip, device['hostname']))
-                    self.process_steelhead((ip, device['hostname']))
+                    #self.process_steelhead((ip, device['hostname']))
                 except KeyError:
                     pass
         print('Starting with ' + str(self.options.threads) + ' at a time.')
-        #try:
-        #    pool = mp.Pool(processes=self.options.threads, initializer=process_init)
-        #    pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
-        #    pool.close()
-        #    pool.join()
-        #except KeyboardInterrupt:
-        #    pool.terminate()
-        #    pool.join()
+        try:
+            pool = mp.Pool(processes=self.options.threads, initializer=process_init)
+            pool_outputs = pool.map(unwrap_self_process_steelhead, zip([self]*len(devices),devices))
+            pool.close()
+            pool.join()
+        except KeyboardInterrupt:
+            pool.terminate()
+            pool.join()
 
 if __name__ == '__main__':
     SteelHeadCC().run()
