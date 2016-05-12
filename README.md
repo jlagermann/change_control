@@ -92,7 +92,43 @@ Password for all SteelHead's:
 /Users/marcelo/steelscript/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:730: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html (This warning will only appear once by default.)
   InsecureRequestWarning)
 Starting with 10 at a time.
-...
+[2016-05-12 10:51:55,790][10.0.10.211] logging in.
+[2016-05-12 10:51:55,791][10.0.10.211] Fetching running configuration all
+[2016-05-12 10:51:55,791][10.0.10.209] logging in.
+[2016-05-12 10:51:55,792][10.0.10.209] Fetching running configuration all
+[2016-05-12 10:51:55,792][10.0.10.240] logging in.
+[2016-05-12 10:51:55,793][10.0.10.240] Fetching running configuration all
+[2016-05-12 10:51:55,793][10.0.10.212] logging in.
+[2016-05-12 10:51:55,794][10.0.10.212] Fetching running configuration all
+[2016-05-12 10:51:55,797][10.0.10.210] logging in.
+[2016-05-12 10:51:55,797][10.0.10.210] Fetching running configuration all
+[2016-05-12 10:51:55,798][10.0.10.179] logging in.
+[2016-05-12 10:51:55,799][10.0.10.179] Fetching running configuration all
+[2016-05-12 10:52:05,941][10.0.10.240] diff ./logs/10.0.10.240-20160430-134932-latest.log vs. running
+[2016-05-12 10:52:06,239][10.0.10.210] diff ./logs/10.0.10.210-20160430-134932-latest.log vs. running
+[2016-05-12 10:52:06,285][10.0.10.212] diff ./logs/10.0.10.212-20160430-134932-latest.log vs. running
+[2016-05-12 10:52:06,309][10.0.10.211] diff ./logs/10.0.10.211-20160430-134931-latest.log vs. running
+[2016-05-12 10:52:06,381][10.0.10.209] diff ./logs/10.0.10.209-20160430-134932-latest.log vs. running
+[2016-05-12 10:52:21,947][10.0.10.179] SteelHead connection error, attempt #0 , retrying...
+[2016-05-12 10:52:26,948][10.0.10.179] SteelHead connection error, attempt #1 , retrying...
+[2016-05-12 10:52:31,950][10.0.10.179] SteelHead connection error, attempt #2 , retrying...
+[2016-05-12 10:52:36,951][10.0.10.179] SteelHead connection error, attempt #3 , retrying...
+[2016-05-12 10:52:41,953][10.0.10.179] SteelHead connection error, attempt #4 , retrying...
+[2016-05-12 10:52:46,954][10.0.10.179] SteelHead connection error, attempt #5 , retrying...
+[2016-05-12 10:52:51,956][10.0.10.179] SteelHead connection error, attempt #6 , retrying...
+[2016-05-12 10:52:56,958][10.0.10.179] SteelHead connection error, attempt #7 , retrying...
+[2016-05-12 10:53:01,960][10.0.10.179] SteelHead connection error, attempt #8 , retrying...
+[2016-05-12 10:53:06,962][10.0.10.179] SteelHead connection error, attempt #9 , retrying...
+[2016-05-12 10:53:11,962][10.0.10.179] SteelHead connection error, giving up
+[2016-05-12 10:53:11,963][10.0.10.179] Cannot retrieve running configuration
 ```
-* Note: The script will prompt for the username password if is not specified in the config file or via a parameter when running the script.
+* Note 1: The script will prompt for the username password if is not specified in the config file or via a parameter when running the script.
+* Note 2: In case a device cannot be reach, the script will try again up to ten times to access the device.
 
+#### Caveats
+
+```
+/steelscript/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:730: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html (This warning will only appear once by default.)
+  InsecureRequestWarning)
+```
+This warning is about using self signed certificates and not the root CA not found for this certificate, if this is the case, is perfectly normal to ignore.
